@@ -14,7 +14,7 @@ process BCFTOOLS_CALL {
     def args = task.ext.args ?: ''
     def filter = "FMT/DP<${params.min_depth} || QUAL<${params.min_qual}"
     """
-    bcftools mpileup -Ou -f ${fasta} -q ${params.min_mapq} -a, AD,DP ${bam} \\
+    bcftools mpileup -Ou -f ${fasta} -q ${params.min_mapq} -a AD,DP ${bam} \\
         | bcftools call --ploidy ${params.ploidy} -mv -Ou ${args} \\
         | bcftools filter -e '${filter}' -Ob -o ${meta.id}.calls.bcf
     bcftools index ${meta.id}.calls.bcf
