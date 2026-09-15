@@ -1,0 +1,28 @@
+name: bcftools_vcf
+description: |
+  Convert a BCF to a bgzipped, indexed VCF.
+keywords:
+  - vcf
+  - conversion
+  - bcftools
+tools:
+  - bcftools:
+      description: |
+        bcftools
+
+input:
+  - bcf:
+      type: map/file
+      description: |
+        Sample metadata map, BCF and its index.
+      pattern: "tuple val(meta), path(bcf), path(csi)"
+
+output:
+  - vcf:
+      type: map/file
+      description: |
+        Bgzipped VCF and its index.
+      pattern: "tuple val(meta), path(*.calls.vcf.gz), path(*.calls.vcf.gz.tbi)"
+
+authors:
+  - "EIT Generative Biology Institute"

@@ -1,0 +1,28 @@
+name: bcftools_csv
+description: |
+  Flatten variant calls into a CSV table.
+keywords:
+  - csv
+  - table
+  - bcftools
+tools:
+  - bcftools:
+      description: |
+        bcftools
+
+input:
+  - bcf:
+      type: map/file
+      description: |
+        Sample metadata map, BCF and its index.
+      pattern: "tuple val(meta), path(bcf), path(csi)"
+
+output:
+  - csv:
+      type: map/file
+      description: |
+        Variants as CSV.
+      pattern: "tuple val(meta), path(*.calls.csv)"
+
+authors:
+  - "EIT Generative Biology Institute"
