@@ -3,6 +3,7 @@ FROM mambaorg/micromamba:1.5.8
 USER root
 
 RUN micromamba install -y -n base -c bioconda -c conda-forge \
+        procps-ng \
         bcftools=1.23.1 \
     && micromamba clean --all --yes
 
