@@ -1,74 +1,74 @@
-Sept-15 14:04:33.112 [main] DEBUG nextflow.cli.Launcher - $> nextflow -quiet -log /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/meta/nextflow.log run /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test-f9e4ca5a7fe7795e90b035a2a400ee21.nf -c /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/nextflow.config -c /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/nextflow.config -params-file /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/meta/params.json -ansi-log false -with-trace /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/meta/trace.csv -w /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/work -stub-run
-Sept-15 14:04:33.154 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/Users/pauline.fourgoux/.nextflow/plugins; core-plugins: nf-amazon@3.9.2,nf-azure@1.22.6,nf-cloudcache@0.6.0,nf-codecommit@0.5.3,nf-console@1.3.0,nf-google@1.27.3,nf-k8s@1.5.4,nf-seqera@0.21.1,nf-tower@1.28.2,nf-wave@1.21.0
-Sept-15 14:04:33.164 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
-Sept-15 14:04:33.164 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
-Sept-15 14:04:33.165 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.14.1 in 'deployment' mode
-Sept-15 14:04:33.171 [main] DEBUG nextflow.util.RetryConfig - Missing nextflow session - using default retry config
-Sept-15 14:04:33.228 [main] DEBUG nextflow.plugin.PluginUpdater - Using plugin repository: HttpPluginRepository [registry]; url=https://registry.nextflow.io/api
-Sept-15 14:04:33.231 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
-Sept-15 14:04:33.247 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/nextflow.config
-Sept-15 14:04:33.249 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/nextflow.config
-Sept-15 14:04:33.249 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/nextflow.config
-Sept-15 14:04:33.249 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/nextflow.config
-Sept-15 14:04:33.249 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/nextflow.config
-Sept-15 14:04:33.249 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/nextflow.config
-Sept-15 14:04:33.262 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
-Sept-15 14:04:33.433 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
-Sept-15 14:04:33.440 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
-Sept-15 14:04:33.457 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
-Sept-15 14:04:33.457 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
-Sept-15 14:04:33.465 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /Users/pauline.fourgoux/.nextflow/secrets/store.json
-Sept-15 14:04:33.466 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@75023c53] - activable => nextflow.secret.LocalSecretsProvider@75023c53
-Sept-15 14:04:33.498 [main] DEBUG nextflow.Session - Session UUID: 12c5c339-f53b-4649-b5c5-c93f725ba83a
-Sept-15 14:04:33.498 [main] DEBUG nextflow.Session - Run name: special_poitras
-Sept-15 14:04:33.499 [main] DEBUG nextflow.Session - Executor pool size: 14
-Sept-15 14:04:33.502 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
-Sept-15 14:04:33.504 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=42; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
-Sept-15 14:04:33.518 [main] DEBUG nextflow.cli.CmdRun - 
+Sept-15 14:22:02.486 [main] DEBUG nextflow.cli.Launcher - $> nextflow -quiet -log /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/meta/nextflow.log run /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test-f9e4ca5a7fe7795e90b035a2a400ee21.nf -c /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/nextflow.config -c /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/nextflow.config -params-file /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/meta/params.json -ansi-log false -with-trace /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/meta/trace.csv -w /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/work -stub-run
+Sept-15 14:22:02.524 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/Users/pauline.fourgoux/.nextflow/plugins; core-plugins: nf-amazon@3.9.2,nf-azure@1.22.6,nf-cloudcache@0.6.0,nf-codecommit@0.5.3,nf-console@1.3.0,nf-google@1.27.3,nf-k8s@1.5.4,nf-seqera@0.21.1,nf-tower@1.28.2,nf-wave@1.21.0
+Sept-15 14:22:02.535 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Sept-15 14:22:02.535 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Sept-15 14:22:02.536 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.14.1 in 'deployment' mode
+Sept-15 14:22:02.543 [main] DEBUG nextflow.util.RetryConfig - Missing nextflow session - using default retry config
+Sept-15 14:22:02.598 [main] DEBUG nextflow.plugin.PluginUpdater - Using plugin repository: HttpPluginRepository [registry]; url=https://registry.nextflow.io/api
+Sept-15 14:22:02.600 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Sept-15 14:22:02.619 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/nextflow.config
+Sept-15 14:22:02.620 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/nextflow.config
+Sept-15 14:22:02.621 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/nextflow.config
+Sept-15 14:22:02.621 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/nextflow.config
+Sept-15 14:22:02.621 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/nextflow.config
+Sept-15 14:22:02.622 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/nextflow.config
+Sept-15 14:22:02.632 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Sept-15 14:22:02.789 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Sept-15 14:22:02.792 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `standard`
+Sept-15 14:22:02.811 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Sept-15 14:22:02.811 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Sept-15 14:22:02.818 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /Users/pauline.fourgoux/.nextflow/secrets/store.json
+Sept-15 14:22:02.819 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@75023c53] - activable => nextflow.secret.LocalSecretsProvider@75023c53
+Sept-15 14:22:02.847 [main] DEBUG nextflow.Session - Session UUID: 9d3ddf97-74e5-46a6-b753-92bdc5c26680
+Sept-15 14:22:02.847 [main] DEBUG nextflow.Session - Run name: disturbed_austin
+Sept-15 14:22:02.847 [main] DEBUG nextflow.Session - Executor pool size: 14
+Sept-15 14:22:02.850 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Sept-15 14:22:02.852 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=42; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Sept-15 14:22:02.864 [main] DEBUG nextflow.cli.CmdRun - 
   Version: 26.04.6 build 12646
   Created: 09-07-2026 18:49 UTC (19:49 BST)
   System: Mac OS X 26.6.2
   Runtime: Groovy 4.0.31 on OpenJDK 64-Bit Server VM 17.0.10+7
   Encoding: UTF-8 (UTF-8)
-  Process: 99702@EIT-CPQMWPHKJJ [10.6.61.179]
-  CPUs: 14 - Mem: 36 GB (222.3 MB) - Swap: 0 (0)
-Sept-15 14:04:33.527 [main] DEBUG nextflow.Session - Work-dir: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/work [Mac OS X]
-Sept-15 14:04:33.527 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/bin
-Sept-15 14:04:33.532 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
-Sept-15 14:04:33.535 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
-Sept-15 14:04:33.537 [main] DEBUG nextflow.Session - Observer factory (v2): DefaultObserverFactory
-Sept-15 14:04:33.554 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
-Sept-15 14:04:33.558 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 15; maxThreads: 1000
-Sept-15 14:04:33.588 [main] DEBUG nextflow.Session - Session start
-Sept-15 14:04:33.590 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/meta/trace.csv
-Sept-15 14:04:33.705 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
-Sept-15 14:04:33.901 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Sept-15 14:04:33.901 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Sept-15 14:04:33.905 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
-Sept-15 14:04:33.907 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=14; memory=36 GB; capacity=14; pollInterval=100ms; dumpInterval=5m
-Sept-15 14:04:33.908 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
-Sept-15 14:04:33.916 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'BCFTOOLS_CSV': maxForks=0; fair=false; array=0
-Sept-15 14:04:33.950 [main] DEBUG nextflow.Session - Process names: BCFTOOLS_CSV
-Sept-15 14:04:33.952 [main] DEBUG nextflow.Session - Igniting dataflow network (1)
-Sept-15 14:04:33.952 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > BCFTOOLS_CSV
-Sept-15 14:04:33.953 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Process: 14936@EIT-CPQMWPHKJJ [10.6.61.179]
+  CPUs: 14 - Mem: 36 GB (339.1 MB) - Swap: 3 GB (1.1 GB)
+Sept-15 14:22:02.871 [main] DEBUG nextflow.Session - Work-dir: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/work [Mac OS X]
+Sept-15 14:22:02.871 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/bin
+Sept-15 14:22:02.874 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Sept-15 14:22:02.878 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+Sept-15 14:22:02.879 [main] DEBUG nextflow.Session - Observer factory (v2): DefaultObserverFactory
+Sept-15 14:22:02.893 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Sept-15 14:22:02.897 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 15; maxThreads: 1000
+Sept-15 14:22:02.920 [main] DEBUG nextflow.Session - Session start
+Sept-15 14:22:02.922 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/meta/trace.csv
+Sept-15 14:22:03.039 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Sept-15 14:22:03.277 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Sept-15 14:22:03.277 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Sept-15 14:22:03.282 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Sept-15 14:22:03.284 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=14; memory=36 GB; capacity=14; pollInterval=100ms; dumpInterval=5m
+Sept-15 14:22:03.285 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Sept-15 14:22:03.294 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'BCFTOOLS_CSV': maxForks=0; fair=false; array=0
+Sept-15 14:22:03.328 [main] DEBUG nextflow.Session - Process names: BCFTOOLS_CSV
+Sept-15 14:22:03.330 [main] DEBUG nextflow.Session - Igniting dataflow network (1)
+Sept-15 14:22:03.330 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > BCFTOOLS_CSV
+Sept-15 14:22:03.330 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
   _nf_script_297f5371879ce22b: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test-f9e4ca5a7fe7795e90b035a2a400ee21.nf
   _nf_script_4ff587242d1f291e: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/csv/main.nf
-Sept-15 14:04:33.953 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
-Sept-15 14:04:33.953 [main] DEBUG nextflow.Session - Session await
-Sept-15 14:04:33.996 [FileTransfer-2] DEBUG nextflow.file.FilePorter - Copying foreign file https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai to work dir: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/work/stage-12c5c339-f53b-4649-b5c5-c93f725ba83a/51/b2e980db7e7d2c0e2df4d9e80641f9/test.paired_end.sorted.bam.bai
-Sept-15 14:04:33.996 [FileTransfer-1] DEBUG nextflow.file.FilePorter - Copying foreign file https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam to work dir: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/work/stage-12c5c339-f53b-4649-b5c5-c93f725ba83a/6b/a198da7866421a731191217bf122dc/test.paired_end.sorted.bam
-Sept-15 14:04:34.082 [Task submitter] WARN  n.executor.BashWrapperBuilder - Task runtime metrics are not reported when using macOS without a container engine
-Sept-15 14:04:34.088 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Sept-15 14:04:34.090 [Task submitter] INFO  nextflow.Session - [2f/40be28] Submitted process > BCFTOOLS_CSV (test)
-Sept-15 14:04:34.177 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: BCFTOOLS_CSV (test); status: COMPLETED; exit: 0; error: -; workDir: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/work/2f/40be289e77528d03a0b1e7e1aa0e47]
-Sept-15 14:04:34.177 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=42; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
-Sept-15 14:04:34.187 [main] DEBUG nextflow.Session - Session await > all processes finished
-Sept-15 14:04:34.280 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
-Sept-15 14:04:34.280 [main] DEBUG nextflow.Session - Session await > all barriers passed
-Sept-15 14:04:34.281 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
-Sept-15 14:04:34.287 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=1; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=13ms; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=1; peakMemory=0; ]
-Sept-15 14:04:34.287 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
-Sept-15 14:04:34.290 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
-Sept-15 14:04:34.296 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
-Sept-15 14:04:34.296 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
+Sept-15 14:22:03.330 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Sept-15 14:22:03.330 [main] DEBUG nextflow.Session - Session await
+Sept-15 14:22:03.380 [FileTransfer-1] DEBUG nextflow.file.FilePorter - Copying foreign file https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam to work dir: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/work/stage-9d3ddf97-74e5-46a6-b753-92bdc5c26680/6d/35645c129a307971661ccbbeeda938/test.paired_end.sorted.bam
+Sept-15 14:22:03.380 [FileTransfer-2] DEBUG nextflow.file.FilePorter - Copying foreign file https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai to work dir: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/work/stage-9d3ddf97-74e5-46a6-b753-92bdc5c26680/3c/ff65423d7962639d82d8381057069f/test.paired_end.sorted.bam.bai
+Sept-15 14:22:03.518 [Task submitter] WARN  n.executor.BashWrapperBuilder - Task runtime metrics are not reported when using macOS without a container engine
+Sept-15 14:22:03.525 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Sept-15 14:22:03.526 [Task submitter] INFO  nextflow.Session - [e9/281aab] Submitted process > BCFTOOLS_CSV (test)
+Sept-15 14:22:03.613 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: BCFTOOLS_CSV (test); status: COMPLETED; exit: 0; error: -; workDir: /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/f9e4ca5a7fe7795e90b035a2a400ee21/work/e9/281aab56ccc3d44c26cab9bc5e92dd]
+Sept-15 14:22:03.614 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=42; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Sept-15 14:22:03.623 [main] DEBUG nextflow.Session - Session await > all processes finished
+Sept-15 14:22:03.720 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Sept-15 14:22:03.721 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Sept-15 14:22:03.722 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Sept-15 14:22:03.727 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=1; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=13ms; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=1; peakMemory=0; ]
+Sept-15 14:22:03.728 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Sept-15 14:22:03.731 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Sept-15 14:22:03.739 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Sept-15 14:22:03.739 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

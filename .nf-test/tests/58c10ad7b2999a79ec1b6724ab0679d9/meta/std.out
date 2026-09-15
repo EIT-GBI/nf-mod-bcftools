@@ -1,5 +1,5 @@
 [PIPELINE] nf-mod-bcftools 0.0.0 | profile=standard
 [WORKDIR] /Users/pauline.fourgoux/Documents/Code/nf-dnaseq/modules/bcftools/.nf-test/tests/58c10ad7b2999a79ec1b6724ab0679d9/work
-[PROCESS 18/7794ec] BCFTOOLS_CALL (test)
+[PROCESS e5/4e2989] BCFTOOLS_CALL (test)
 
 [SUCCESS] completed=1 failed=0 cached=0

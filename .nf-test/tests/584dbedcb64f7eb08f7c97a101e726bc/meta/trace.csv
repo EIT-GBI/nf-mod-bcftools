@@ -1,2 +1,2 @@
 task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-1	a7/0722e0	99793	BCFTOOLS_VCF (test)	COMPLETED	0	2026-09-15 14:04:36.324	105ms	13ms	-	-	-	-	-
+1	4a/2f059f	15043	BCFTOOLS_VCF (test)	COMPLETED	0	2026-09-15 14:22:05.821	75ms	13ms	-	-	-	-	-
