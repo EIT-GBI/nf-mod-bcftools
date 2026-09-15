@@ -1,8 +1,6 @@
 process BCFTOOLS_CONSENSUS {
     tag "${meta.id}"
 
-    publishDir "${params.outdir}/consensus", mode: 'link'
-
     input:
     tuple val(meta), path(bcf), path(csi)
     tuple path(fasta), path(fai)

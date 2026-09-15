@@ -1,8 +1,6 @@
 process BCFTOOLS_CSV {
     tag "${meta.id}"
 
-    publishDir "${params.outdir}/variants/csv", mode: 'link'
-
     input:
     tuple val(meta), path(bcf), path(csi)
 
