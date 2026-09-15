@@ -1,2 +1,0 @@
-task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-1	e5/4e2989	14825	BCFTOOLS_CALL (test)	COMPLETED	0	2026-09-15 14:21:58.764	92ms	15ms	-	-	-	-	-
