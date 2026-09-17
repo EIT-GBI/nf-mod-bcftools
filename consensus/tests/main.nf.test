@@ -3,7 +3,6 @@ nextflow_process {
     name "Test BCFTOOLS_CONSENSUS"
     script "../main.nf"
     process "BCFTOOLS_CONSENSUS"
-    config "../../tests.config"
 
     def TEST_BAM  = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam", checkIfExists: true)'
     def TEST_BAI  = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai", checkIfExists: true)'
@@ -43,15 +42,9 @@ nextflow_process {
 
     test("BCFTOOLS_CONSENSUS - applies the calls onto the reference") {
 
+        config "../../tests-thresholds.config"
+
         when {
-            params {
-                calling {
-                    min_mapq  = 0
-                    ploidy    = 1
-                    min_depth = 1
-                    min_qual  = 5
-                }
-            }
             process {
                 """
                 input[0] = BCFTOOLS_CALL.out.bcf

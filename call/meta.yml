@@ -1,8 +1,6 @@
 name: bcftools_call
 description: |
-  Call variants with bcftools mpileup/call and filter them. The calling and
-  filtering thresholds are module-owned params.calling.*; extra tool flags come
-  from task.ext.args (mpileup), args2 (call) and args3 (filter).
+  Call variants with bcftools mpileup/call and filter them. Tool flags come from task.ext.args (mpileup), args2 (call) and args3 (filter).
 keywords:
   - variant calling
   - bcftools
@@ -11,28 +9,6 @@ tools:
   - bcftools:
       description: |
         bcftools
-
-params:
-  - calling.min_mapq:
-      type: integer
-      description: |
-        Minimum mapping quality; becomes `-q <value>` on bcftools mpileup.
-        Omit to leave the flag off.
-  - calling.ploidy:
-      type: integer
-      description: |
-        Sample ploidy; becomes `--ploidy <value>` on bcftools call. Omit to
-        leave the flag off.
-  - calling.min_depth:
-      type: integer
-      description: |
-        Minimum FORMAT/DP; calls below it are excluded by bcftools filter.
-        Omit to drop this term.
-  - calling.min_qual:
-      type: integer
-      description: |
-        Minimum QUAL; calls below it are excluded by bcftools filter. Omit to
-        drop this term.
 
 input:
   - bam:

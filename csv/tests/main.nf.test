@@ -3,8 +3,8 @@ nextflow_process {
     name "Test BCFTOOLS_CSV"
     script "../main.nf"
     process "BCFTOOLS_CSV"
-    config "../../tests.config"
-
+    // A real BCF to convert. The config a test names applies to this setup too,
+    // so each test below calls with its own mpileup/call/filter flags.
     def TEST_BAM  = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam", checkIfExists: true)'
     def TEST_BAI  = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai", checkIfExists: true)'
     def TEST_FA   = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta", checkIfExists: true)'
@@ -42,15 +42,9 @@ nextflow_process {
 
     test("BCFTOOLS_CSV - one row per surviving call, with DP AD and QUAL") {
 
+        config "../../tests-thresholds.config"
+
         when {
-            params {
-                calling {
-                    min_mapq  = 0
-                    ploidy    = 1
-                    min_depth = 1
-                    min_qual  = 5
-                }
-            }
             process {
                 """
                 input[0] = BCFTOOLS_CALL.out.bcf
@@ -72,17 +66,11 @@ nextflow_process {
         }
     }
 
-    test("BCFTOOLS_CSV - a stricter min_depth leaves fewer rows") {
+    test("BCFTOOLS_CSV - a stricter minimum depth leaves fewer rows") {
+
+        config "../../tests-thresholds-strict.config"
 
         when {
-            params {
-                calling {
-                    min_mapq  = 0
-                    ploidy    = 1
-                    min_depth = 2
-                    min_qual  = 5
-                }
-            }
             process {
                 """
                 input[0] = BCFTOOLS_CALL.out.bcf
@@ -95,8 +83,8 @@ nextflow_process {
 
             def lines = path(process.out.csv[0][1]).readLines()
 
-            // every call but one has FMT/DP of 1, so raising min_depth to 2
-            // drops them
+            // every call but one has FMT/DP of 1, so raising the minimum depth
+            // to 2 drops them
             assert lines.size() == 2   // header + 1 call
             assert snapshot(lines).match()
         }

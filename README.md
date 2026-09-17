@@ -24,9 +24,9 @@ module reusable across pipelines that want different result layouts.
 
 ## Tool arguments
 
-Extra tool flags are passed through `task.ext.args` (and `args2`/`args3` where a
-process runs more than one command). For `BCFTOOLS_CALL` these map to
-`mpileup`, `call` and `filter` respectively:
+Flags are passed through `task.ext.args` (and `args2`/`args3` where a process
+runs more than one command) rather than read from pipeline `params`, so the
+module never depends on a particular pipeline's parameter names:
 
 ```groovy
 process {
@@ -36,52 +36,22 @@ process {
 }
 ```
 
-## Module-owned parameters
-
-Where a setting is a property of what the module *does* rather than of a
-particular pipeline, the module owns it: it declares the `params` names and
-builds the tool invocation from them, so every consuming pipeline configures it
-the same way instead of each one re-deriving the same flags.
-
-`BCFTOOLS_CALL` works this way:
-
-| Param | Becomes |
-| --- | --- |
-| `params.calling.min_mapq` | `-q <value>` on `bcftools mpileup` |
-| `params.calling.ploidy` | `--ploidy <value>` on `bcftools call` |
-| `params.calling.min_depth` | `FMT/DP<<value>` in the `bcftools filter` exclude expression |
-| `params.calling.min_qual` | `QUAL<<value>` in the same expression |
+For `BCFTOOLS_CALL` the three slots map to the three commands it pipes together:
 
 ```groovy
-params {
-    calling {
-        min_mapq  = 20
-        ploidy    = 1
-        min_depth = 10
-        min_qual  = 20
+process {
+    withName: BCFTOOLS_CALL {
+        ext.args  = '-q 20 -a AD,DP'                    // bcftools mpileup
+        ext.args2 = '--ploidy 1'                        // bcftools call
+        ext.args3 = "-e 'FMT/DP<10 || QUAL<20'"         // bcftools filter
     }
 }
-// -> mpileup -q 20 -a AD,DP | call --ploidy 1 | filter -e 'FMT/DP<10 || QUAL<20'
 ```
 
-Any of them may be left unset, which drops that flag or term. With none set the
-calls are not filtered at all, so a pipeline that does not set `params.calling`
-keeps its previous behaviour.
-
-The namespace is `calling` rather than `call`, which matches the process name:
-`call` cannot be used, because a `call { }` block in nf-test's params DSL is
-parsed as invoking the closure and recurses until the JVM stack overflows.
-
-`-a AD,DP` is always passed to `mpileup`. It is not a pipeline choice:
-`BCFTOOLS_CSV` queries `%DP` and `[%AD]`, so the annotations have to be there.
-
-Do **not** declare defaults for these in `conf/module.config`. Pipelines
-normally `includeConfig` that file *after* their own `params` block, so a
-default there would silently overwrite whatever the pipeline had set.
-
-Setting `params.calling.min_depth`/`min_qual` and also passing `-e` through
-`ext.args3` is an error: bcftools filter honours only the last `-e`, which would
-silently drop one of the two filters, so the process fails instead.
+`-a AD,DP` is worth passing whenever `BCFTOOLS_CSV` runs downstream: it queries
+`%DP` and `[%AD]`, which are only present if mpileup was asked for them. The
+single quotes around the filter expression are load-bearing - they keep `||` and
+`<` away from the shell.
 
 ## Use as submodule
 
@@ -122,19 +92,20 @@ Nextflow 26.04.4 or newer.
 `nf-test test`. Each process has a stub test covering wiring and output names,
 and tests that run bcftools for real against
 `ghcr.io/eit-gbi/nf-mod-bcftools:latest` and snapshot what comes out. The real
-tests need Docker.
+tests need Docker. `tests.config` gives the container; `tests-thresholds.config`
+adds mpileup/call/filter flags through `ext.args`, and the `-strict` variant
+raises the minimum depth so the filter can be seen changing what survives.
 
 `BCFTOOLS_CONSENSUS`, `BCFTOOLS_CSV` and `BCFTOOLS_VCF` run `BCFTOOLS_CALL` in a
-`setup` block to get a real BCF; params set in a test's `when` block reach that
-setup too, so each test calls with its own thresholds.
+`setup` block to get a real BCF. The config a test names applies to that setup
+too, so each test calls with its own flags.
 
 What `BCFTOOLS_CALL` produced is asserted in those downstream tests rather than
 in its own: a `-Ob` BCF is not readable by nf-test, and its checksum differs
 between two identical runs because bcftools stamps a `Date` into the header. The
 VCF test reads the gzipped output as text and asserts the `##bcftools_*Command`
-header lines with the version and timestamp stripped. That is what pins the
-comparison operators - variant counts alone cannot tell `QUAL<` from `QUAL<=`
-unless the test data happens to sit on the boundary.
+header lines with the version and timestamp stripped, which confirms the flags
+reached each of the three commands intact.
 
 ## Releasing
 

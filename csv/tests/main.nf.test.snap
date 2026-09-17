@@ -1,4 +1,17 @@
 {
+    "BCFTOOLS_CSV - a stricter minimum depth leaves fewer rows": {
+        "content": [
+            [
+                "CHROM,POS,REF,ALT,DP,AD(ref,alt),QUAL,FILTER",
+                "MT192765.1,18807,T,C,6,0,5,116.415,PASS"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "26.04.6"
+        },
+        "timestamp": "2026-09-17T14:33:51.681569"
+    },
     "BCFTOOLS_CSV - a stricter min_depth leaves fewer rows": {
         "content": [
             [
