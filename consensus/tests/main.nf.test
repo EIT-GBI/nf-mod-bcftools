@@ -3,6 +3,24 @@ nextflow_process {
     name "Test BCFTOOLS_CONSENSUS"
     script "../main.nf"
     process "BCFTOOLS_CONSENSUS"
+    config "../../tests.config"
+
+    def TEST_BAM  = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam", checkIfExists: true)'
+    def TEST_BAI  = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai", checkIfExists: true)'
+    def TEST_FA   = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta", checkIfExists: true)'
+    def TEST_FAI  = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.fai", checkIfExists: true)'
+
+    setup {
+        run("BCFTOOLS_CALL") {
+            script "../../call/main.nf"
+            process {
+                """
+                input[0] = [[id:'test'], ${TEST_BAM}, ${TEST_BAI}]
+                input[1] = [${TEST_FA}, ${TEST_FAI}]
+                """
+            }
+        }
+    }
 
     test("BCFTOOLS_CONSENSUS - stub - wiring and output names") {
 
@@ -11,8 +29,8 @@ nextflow_process {
         when {
             process {
                 """
-                input[0] = [[id:'test'], file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam", checkIfExists: true), file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai", checkIfExists: true)]
-                input[1] = [file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta", checkIfExists: true), file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.fai", checkIfExists: true)]
+                input[0] = BCFTOOLS_CALL.out.bcf
+                input[1] = [${TEST_FA}, ${TEST_FAI}]
                 """
             }
         }
@@ -20,6 +38,40 @@ nextflow_process {
         then {
             assert process.success
             assert process.out.consensus
+        }
+    }
+
+    test("BCFTOOLS_CONSENSUS - applies the calls onto the reference") {
+
+        when {
+            params {
+                calling {
+                    min_mapq  = 0
+                    ploidy    = 1
+                    min_depth = 1
+                    min_qual  = 5
+                }
+            }
+            process {
+                """
+                input[0] = BCFTOOLS_CALL.out.bcf
+                input[1] = [${TEST_FA}, ${TEST_FAI}]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+
+            def lines = path(process.out.consensus[0][1]).readLines()
+            def header = lines[0]
+            def sequence = lines[1..-1].join('')
+
+            assert header.startsWith('>MT192765.1')
+            // the calls are all substitutions, so the reference length is kept
+            assert sequence.length() == 29829
+            // plain FASTA, no timestamps, so the file checksum is stable
+            assert snapshot(process.out.consensus).match()
         }
     }
 }

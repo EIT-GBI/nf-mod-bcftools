@@ -1,0 +1,26 @@
+{
+    "BCFTOOLS_VCF - carries through the thresholds BCFTOOLS_CALL was given": {
+        "content": [
+            [
+                "##bcftoolsCommand=mpileup -Ou -f genome.fasta -q 0 -a AD,DP test.paired_end.sorted.bam",
+                "##bcftools_callCommand=call -mv -Ou --ploidy 1",
+                "##bcftools_filterCommand=filter -e 'FMT/DP<1 || QUAL<5' -Ob -o test.calls.bcf",
+                "##bcftools_viewCommand=view -Oz -o test.calls.vcf.gz test.calls.bcf"
+            ],
+            [
+                "MT192765.1\t197\t.\tG\tT\t7.30814\tPASS\tDP=1;SGB=-0.379885;MQ0F=0;AC=1;AN=1;DP4=0,0,1,0;MQ=60\tGT:PL:DP:AD\t1:36,0:1:0,1",
+                "MT192765.1\t4788\t.\tC\tT\t7.30814\tPASS\tDP=1;SGB=-0.379885;MQ0F=0;AC=1;AN=1;DP4=0,0,1,0;MQ=60\tGT:PL:DP:AD\t1:36,0:1:0,1",
+                "MT192765.1\t8236\t.\tC\tA\t7.30814\tPASS\tDP=1;SGB=-0.379885;MQ0F=0;AC=1;AN=1;DP4=0,0,0,1;MQ=60\tGT:PL:DP:AD\t1:36,0:1:0,1",
+                "MT192765.1\t11037\t.\tT\tC\t7.30814\tPASS\tDP=1;SGB=-0.379885;MQ0F=0;AC=1;AN=1;DP4=0,0,1,0;MQ=60\tGT:PL:DP:AD\t1:36,0:1:0,1",
+                "MT192765.1\t15009\t.\tG\tA\t30.4183\tPASS\tDP=2;SGB=-0.379885;MQ0F=0;AC=1;AN=1;DP4=0,0,1,0;MQ=60\tGT:PL:DP:AD\t1:60,0:1:0,1",
+                "MT192765.1\t18807\t.\tT\tC\t116.415\tPASS\tDP=6;VDB=0.746873;SGB=-0.590765;MQ0F=0;AC=1;AN=1;DP4=0,0,0,5;MQ=60\tGT:PL:DP:AD\t1:146,0:5:0,5",
+                "MT192765.1\t24103\t.\tA\tG\t30.4183\tPASS\tDP=2;SGB=-0.379885;MQ0F=0;AC=1;AN=1;DP4=0,0,1,0;MQ=60\tGT:PL:DP:AD\t1:60,0:1:0,1"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "26.04.6"
+        },
+        "timestamp": "2026-09-17T11:49:09.737888"
+    }
+}
