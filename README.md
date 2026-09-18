@@ -2,7 +2,7 @@
 
 Nextflow module for BCFtools (variant calling and VCF/BCF manipulation). Used as a git submodule by pipelines.
 
-Image: `ghcr.io/eit-gbi/nf-mod-bcftools:v0.0.0`
+Image: `ghcr.io/eit-gbi/nf-mod-bcftools:v1.0.0`
 
 ## Processes
 
@@ -59,7 +59,7 @@ Pin to a release tag rather than a branch, so pipeline runs stay reproducible:
 
 ```bash
 git submodule add https://github.com/EIT-GBI/nf-mod-bcftools.git modules/bcftools
-git -C modules/bcftools checkout v0.0.0
+git -C modules/bcftools checkout v1.0.0
 ```
 
 Then include the module's container config from your `nextflow.config`. Nextflow
