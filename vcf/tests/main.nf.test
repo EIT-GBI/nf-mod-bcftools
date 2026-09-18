@@ -1,0 +1,83 @@
+nextflow_process {
+
+    name "Test BCFTOOLS_VCF"
+    script "../main.nf"
+    process "BCFTOOLS_VCF"
+
+    def TEST_BAM  = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam", checkIfExists: true)'
+    def TEST_BAI  = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai", checkIfExists: true)'
+    def TEST_FA   = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta", checkIfExists: true)'
+    def TEST_FAI  = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.fai", checkIfExists: true)'
+
+    // A real BCF to convert. The config a test names applies to this setup too,
+    // so each test below calls with its own mpileup/call/filter flags.
+    setup {
+        run("BCFTOOLS_CALL") {
+            script "../../call/main.nf"
+            process {
+                """
+                input[0] = [[id:'test'], ${TEST_BAM}, ${TEST_BAI}]
+                input[1] = [${TEST_FA}, ${TEST_FAI}]
+                """
+            }
+        }
+    }
+
+    test("BCFTOOLS_VCF - stub - wiring and output names") {
+
+        options "-stub-run"
+
+        when {
+            process {
+                """
+                input[0] = BCFTOOLS_CALL.out.bcf
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assert process.out.vcf
+        }
+    }
+
+    test("BCFTOOLS_VCF - carries through the thresholds BCFTOOLS_CALL was given") {
+
+        config "../../tests-thresholds.config"
+
+        when {
+            process {
+                """
+                input[0] = BCFTOOLS_CALL.out.bcf
+                """
+            }
+        }
+
+        then {
+            assert process.success
+
+            def lines = path(process.out.vcf[0][1]).linesGzip
+
+            // bcftools records each step's command line in the header. Its
+            // version and a timestamp go in too, and both move between runs and
+            // image rebuilds, so drop them and keep the commands.
+            def commands = lines.findAll { it.startsWith('##bcftools') && it.contains('Command=') }
+                                .collect { it.replaceAll(/; Date=.*$/, '') }
+            def variants = lines.findAll { !it.startsWith('#') }
+
+            // this is what pins the params -> flags mapping, including the
+            // comparison operators that variant counts alone cannot distinguish
+            assert commands.find { it.startsWith('##bcftoolsCommand=') } ==
+                '##bcftoolsCommand=mpileup -Ou -f genome.fasta -q 0 -a AD,DP test.paired_end.sorted.bam'
+            assert commands.find { it.startsWith('##bcftools_callCommand=') } ==
+                '##bcftools_callCommand=call -mv -Ou --ploidy 1'
+            assert commands.find { it.startsWith('##bcftools_filterCommand=') } ==
+                "##bcftools_filterCommand=filter -e 'FMT/DP<1 || QUAL<5' -Ob -o test.calls.bcf"
+
+            // min_depth=1 is a boundary: every call has FMT/DP >= 1, so '<'
+            // excludes none of them while '<=' would leave only one.
+            assert variants.size() == 7
+            assert snapshot(commands, variants).match()
+        }
+    }
+}

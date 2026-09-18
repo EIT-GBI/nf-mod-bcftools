@@ -1,0 +1,19 @@
+{
+    "BCFTOOLS_CONSENSUS - applies the calls onto the reference": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.consensus.fna:md5,406391a1852f1b25b402c568cabe336b"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "26.04.6"
+        },
+        "timestamp": "2026-09-17T11:50:12.113025"
+    }
+}

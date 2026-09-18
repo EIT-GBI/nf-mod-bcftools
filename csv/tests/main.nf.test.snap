@@ -1,0 +1,34 @@
+{
+    "BCFTOOLS_CSV - a stricter minimum depth leaves fewer rows": {
+        "content": [
+            [
+                "CHROM,POS,REF,ALT,DP,AD(ref,alt),QUAL,FILTER",
+                "MT192765.1,18807,T,C,6,0,5,116.415,PASS"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "26.04.6"
+        },
+        "timestamp": "2026-09-17T14:33:51.681569"
+    },
+    "BCFTOOLS_CSV - one row per surviving call, with DP AD and QUAL": {
+        "content": [
+            [
+                "CHROM,POS,REF,ALT,DP,AD(ref,alt),QUAL,FILTER",
+                "MT192765.1,197,G,T,1,0,1,7.30814,PASS",
+                "MT192765.1,4788,C,T,1,0,1,7.30814,PASS",
+                "MT192765.1,8236,C,A,1,0,1,7.30814,PASS",
+                "MT192765.1,11037,T,C,1,0,1,7.30814,PASS",
+                "MT192765.1,15009,G,A,2,0,1,30.4183,PASS",
+                "MT192765.1,18807,T,C,6,0,5,116.415,PASS",
+                "MT192765.1,24103,A,G,2,0,1,30.4183,PASS"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "26.04.6"
+        },
+        "timestamp": "2026-09-17T11:49:39.987651"
+    }
+}

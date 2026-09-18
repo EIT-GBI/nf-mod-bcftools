@@ -1,8 +1,6 @@
 process BCFTOOLS_VCF {
     tag "${meta.id}"
 
-    publishDir "${params.outdir}/variants/vcf", mode: 'link'
-
     input:
     tuple val(meta), path(bcf), path(csi)
 

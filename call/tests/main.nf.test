@@ -1,0 +1,57 @@
+nextflow_process {
+
+    name "Test BCFTOOLS_CALL"
+    script "../main.nf"
+    process "BCFTOOLS_CALL"
+
+    def TEST_BAM  = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam", checkIfExists: true)'
+    def TEST_BAI  = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai", checkIfExists: true)'
+    def TEST_FA   = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta", checkIfExists: true)'
+    def TEST_FAI  = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.fai", checkIfExists: true)'
+
+    // What the called variants actually are, and which flags produced them, is
+    // asserted in the vcf/ and csv/ tests: they run BCFTOOLS_CALL in a setup
+    // block and then read its output as text. A -Ob BCF is not readable here,
+    // and its checksum moves between identical runs because bcftools stamps a
+    // Date into the header.
+
+    test("BCFTOOLS_CALL - stub - wiring and output names") {
+
+        options "-stub-run"
+
+        when {
+            process {
+                """
+                input[0] = [[id:'test'], ${TEST_BAM}, ${TEST_BAI}]
+                input[1] = [${TEST_FA}, ${TEST_FAI}]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assert process.out.bcf
+        }
+    }
+
+    test("BCFTOOLS_CALL - no ext.args - calls without filtering") {
+
+        config "../../tests.config"
+
+        when {
+            process {
+                """
+                input[0] = [[id:'test'], ${TEST_BAM}, ${TEST_BAI}]
+                input[1] = [${TEST_FA}, ${TEST_FAI}]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            // a real BCF and a real index, not the empty files a stub leaves
+            assert path(process.out.bcf[0][1]).size() > 0
+            assert path(process.out.bcf[0][2]).size() > 0
+        }
+    }
+}

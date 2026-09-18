@@ -1,0 +1,92 @@
+nextflow_process {
+
+    name "Test BCFTOOLS_CSV"
+    script "../main.nf"
+    process "BCFTOOLS_CSV"
+    // A real BCF to convert. The config a test names applies to this setup too,
+    // so each test below calls with its own mpileup/call/filter flags.
+    def TEST_BAM  = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam", checkIfExists: true)'
+    def TEST_BAI  = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam.bai", checkIfExists: true)'
+    def TEST_FA   = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta", checkIfExists: true)'
+    def TEST_FAI  = 'file("https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/genomics/sarscov2/genome/genome.fasta.fai", checkIfExists: true)'
+
+    setup {
+        run("BCFTOOLS_CALL") {
+            script "../../call/main.nf"
+            process {
+                """
+                input[0] = [[id:'test'], ${TEST_BAM}, ${TEST_BAI}]
+                input[1] = [${TEST_FA}, ${TEST_FAI}]
+                """
+            }
+        }
+    }
+
+    test("BCFTOOLS_CSV - stub - wiring and output names") {
+
+        options "-stub-run"
+
+        when {
+            process {
+                """
+                input[0] = BCFTOOLS_CALL.out.bcf
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assert process.out.csv
+        }
+    }
+
+    test("BCFTOOLS_CSV - one row per surviving call, with DP AD and QUAL") {
+
+        config "../../tests-thresholds.config"
+
+        when {
+            process {
+                """
+                input[0] = BCFTOOLS_CALL.out.bcf
+                """
+            }
+        }
+
+        then {
+            assert process.success
+
+            // plain text, and the columns are exactly what the thresholds act
+            // on, so this is the most direct check that filtering did the right
+            // thing rather than merely running
+            def lines = path(process.out.csv[0][1]).readLines()
+
+            assert lines[0] == 'CHROM,POS,REF,ALT,DP,AD(ref,alt),QUAL,FILTER'
+            assert lines.size() == 8   // header + 7 calls
+            assert snapshot(lines).match()
+        }
+    }
+
+    test("BCFTOOLS_CSV - a stricter minimum depth leaves fewer rows") {
+
+        config "../../tests-thresholds-strict.config"
+
+        when {
+            process {
+                """
+                input[0] = BCFTOOLS_CALL.out.bcf
+                """
+            }
+        }
+
+        then {
+            assert process.success
+
+            def lines = path(process.out.csv[0][1]).readLines()
+
+            // every call but one has FMT/DP of 1, so raising the minimum depth
+            // to 2 drops them
+            assert lines.size() == 2   // header + 1 call
+            assert snapshot(lines).match()
+        }
+    }
+}

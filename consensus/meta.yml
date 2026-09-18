@@ -1,0 +1,33 @@
+name: bcftools_consensus
+description: |
+  Apply variant calls to the reference to produce a consensus FASTA.
+keywords:
+  - consensus
+  - fasta
+  - bcftools
+tools:
+  - bcftools:
+      description: |
+        bcftools
+
+input:
+  - bcf:
+      type: map/file
+      description: |
+        Sample metadata map, BCF and its index.
+      pattern: "tuple val(meta), path(bcf), path(csi)"
+  - fasta:
+      type: map/file
+      description: |
+        Reference FASTA and its .fai index.
+      pattern: "tuple path(fasta), path(fai)"
+
+output:
+  - consensus:
+      type: map/file
+      description: |
+        Consensus sequence.
+      pattern: "tuple val(meta), path(*.consensus.fna)"
+
+authors:
+  - "EIT Generative Biology Institute"

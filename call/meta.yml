@@ -1,0 +1,33 @@
+name: bcftools_call
+description: |
+  Call variants with bcftools mpileup/call and filter them. Tool flags come from task.ext.args (mpileup), args2 (call) and args3 (filter).
+keywords:
+  - variant calling
+  - bcftools
+  - bcf
+tools:
+  - bcftools:
+      description: |
+        bcftools
+
+input:
+  - bam:
+      type: map/file
+      description: |
+        Sample metadata map, BAM and its index.
+      pattern: "tuple val(meta), path(bam), path(bai)"
+  - fasta:
+      type: map/file
+      description: |
+        Reference FASTA and its .fai index.
+      pattern: "tuple path(fasta), path(fai)"
+
+output:
+  - bcf:
+      type: map/file
+      description: |
+        Filtered calls and index.
+      pattern: "tuple val(meta), path(*.calls.bcf), path(*.calls.bcf.csi)"
+
+authors:
+  - "EIT Generative Biology Institute"
