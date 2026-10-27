@@ -54,4 +54,33 @@ nextflow_process {
             assert path(process.out.bcf[0][2]).size() > 0
         }
     }
+
+    test("BCFTOOLS_CALL - fails when mpileup fails, even though call and filter succeed") {
+
+        config "../../tests.config"
+
+        when {
+            process {
+                // A SAM with a corrupt record after 40 good ones. mpileup
+                // writes some of its output, then exits 1 on the parse error;
+                // call and filter turn it into a valid BCF and exit 0. Without
+                // pipefail the task took filter's status and passed with that
+                // BCF (EIT-GBI/nf-dnaseq#19). With ten or fewer good records
+                // mpileup fails before flushing anything, and call then fails
+                // on empty input, so the test would pass without pipefail.
+                // mpileup reads the whole file, so it needs no index.
+                """
+                input[0] = [[id:'test'], file("${moduleTestDir}/data/corrupt_record.sam", checkIfExists: true), []]
+                input[1] = [${TEST_FA}, ${TEST_FAI}]
+                """
+            }
+        }
+
+        then {
+            assert process.failed
+            // by name, so the test cannot pass on a failure of something else,
+            // such as the harness itself not compiling
+            assert process.trace.failed()*.name == ['BCFTOOLS_CALL (test)']
+        }
+    }
 }

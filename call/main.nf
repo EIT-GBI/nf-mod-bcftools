@@ -13,6 +13,7 @@ process BCFTOOLS_CALL {
     def args2 = task.ext.args2 ?: ''   // bcftools call flags
     def args3 = task.ext.args3 ?: ''   // bcftools filter flags
     """
+    set -euo pipefail
     bcftools mpileup -Ou -f ${fasta} ${args} ${bam} \\
         | bcftools call -mv -Ou ${args2} \\
         | bcftools filter ${args3} -Ob -o ${meta.id}.calls.bcf
